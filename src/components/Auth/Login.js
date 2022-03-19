@@ -38,10 +38,11 @@ const Login = (props) => {
     let navigate = useNavigate();
 
     useEffect(() => {
-        notify();
-        if(window.localStorage.getItem('mavie_token') !== ''){
+        let token = window.localStorage.getItem('mavie_token');
+        if(token || token != null){
             navigate('/dashboard');
         }
+        notify();
     }, [props.auth]);
 
     const notify = () => {
