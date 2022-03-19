@@ -13,6 +13,40 @@
     position: relative;
 }
 
+
+.dashboard-main{
+    padding: 30px;
+    /* border-bottom: 1px solid #5979c3; */
+    display: flex;
+    animation: show 300ms ease-in-out;
+}
+
+.btn-holder{
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    padding: 8px 0px;
+}
+
+.logout{
+    padding: 1px 20px;
+    background-color: #5979c3;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    transition: 200ms ease-in-out;
+}
+
+.logout:hover{
+    transform: scale(1.1);
+}
+
+.dashboard-main span{
+    text-transform:capitalize;
+    color: #5979c3;
+}
+
 .footer{
     position: fixed;
     bottom: 0px;

@@ -8,5 +8,5 @@ export default combineReducers({
     auth: authReducer,
     user: userReducer,
     form: formReducer,
-    // notes: notesReducer
+    notes: notesReducer
 });
