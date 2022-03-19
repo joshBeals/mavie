@@ -1,0 +1,17 @@
+.footer-main{
+    background-color: #5979c3;
+    width: 100%;
+    border-radius: 50px;
+    padding: 20px 40px;
+    text-align: center;
+}
+
+.footer-main i{
+    color: white;
+    cursor: pointer;
+    transition: 200ms ease-in-out;
+}
+
+.footer-main i:hover{
+    color: black;
+}
