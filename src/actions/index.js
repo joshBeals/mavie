@@ -45,7 +45,7 @@ export const fetchNotes = (token) => async dispatch => {
     });
     dispatch({ 
         type: 'FETCH_NOTES',
-        payload: response.data
+        payload: response.data.data
     });
 }
 

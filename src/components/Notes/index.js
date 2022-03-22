@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash';
 import { connect } from 'react-redux';
 import { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
@@ -25,7 +26,13 @@ const Notes = (props) => {
     }, []);
 
     const renderNotes = () => {
-        console.log(props.notes);
+        if(_.isEmpty(props.notes)){
+            return <Empty />
+        }else{
+            return(
+                <div>hello</div>
+            );
+        }
     }
 
     return(
@@ -38,8 +45,7 @@ const Notes = (props) => {
                     </div>
                 </Link>
                 <div>
-                    {/* {props.notes ? <Empty /> : renderNotes()} */}
-                    {console.log(props.notes._id)}
+                    {renderNotes()}
                 </div>
                 <div className='footer'>
                     <Footer />
