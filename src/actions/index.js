@@ -49,6 +49,18 @@ export const fetchNotes = (token) => async dispatch => {
     });
 }
 
+export const fetchNote = (token, id) => async dispatch => {
+    const response =  await mavie.get(`/note/${id}`, {
+        headers: {
+            'auth-token': token
+        }
+    });
+    dispatch({ 
+        type: 'FETCH_NOTE',
+        payload: response.data.data[0]
+    });
+}
+
 export const addNote = (token, formValues) => async dispatch => {
     const response = await mavie.post('/note/new', formValues, {
         headers: {
@@ -57,7 +69,33 @@ export const addNote = (token, formValues) => async dispatch => {
     });
     dispatch({ 
         type: 'CREATE_NOTE',
-        payload: response.data
+        payload: response.data.data
+    });
+    
+}
+
+export const editNote = (id, token, formValues) => async dispatch => {
+    const response = await mavie.put(`/note/edit/${id}`, formValues, {
+        headers: {
+            'auth-token': token
+        }
+    });
+    dispatch({ 
+        type: 'EDIT_NOTE',
+        payload: response.data.data
+    });
+    
+}
+
+export const deleteNote = (id, token) => async dispatch => {
+    const response = await mavie.delete(`/note/delete/${id}`, {
+        headers: {
+            'auth-token': token
+        }
+    });
+    dispatch({ 
+        type: 'DELETE_NOTE',
+        payload: id
     });
     
 }

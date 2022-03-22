@@ -19,18 +19,23 @@ const Header = (props) => {
         }
     }, []);
 
-    if(props.user.length === 0){
-        return(
-            <Spinner />
-        );
-    }
-
-    if(!props.user.success){
+    const logout = () => {
         window.localStorage.removeItem('mavie_token');
         navigate('/login');
     }
 
-    const logout = () => {
+    if(props.user.length === 0){
+        return(
+            <div className='dashboard-main'>
+                <h5><strong>Welcome Back,</strong></h5>
+                <div className='btn-holder'>
+                    <button className='logout' onClick={logout}>Logout</button>
+                </div>
+            </div>
+        );
+    }
+
+    if(!props.user.success){
         window.localStorage.removeItem('mavie_token');
         navigate('/login');
     }

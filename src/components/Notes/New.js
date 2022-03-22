@@ -5,14 +5,12 @@ import { ToastContainer, toast } from 'react-toastify';
 import '../../assets/css/style.css';
 import '../Auth/Auth.css'
 import { connect } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import '../../assets/css/style.css';
 import './Notes.css';
 import Footer from '../Footer';
-import Spinner from '../Spinner/Spinner';
 import Header from '../Header';
 import { addNote } from '../../actions';
-import Empty from '../Empty';
 
 const renderError = ({ touched, error }) => {
     if(touched && error){
@@ -28,14 +26,14 @@ const renderInput = ({ input, label, type, meta }) => {
     if(type == 'input'){
         return(
             <div className='form-container form-group mt-4'>
-                <input type={type} className='form-control' {...input} placeholder={label} style={{borderRadius: '20px'}} />
+                <input type={type} className='form-control my-input' {...input} placeholder={label} />
                 {renderError(meta)}
             </div>
         );
     }else{
         return(
             <div className='form-container form-group mt-4'>
-                <textarea type={type} rows="3" className='form-control' {...input} placeholder={label} style={{borderRadius: '20px'}} />
+                <textarea type={type} rows="3" className='form-control my-input' {...input} placeholder={label} />
                 {renderError(meta)}
             </div>
         );
@@ -51,6 +49,7 @@ const AddNote = (props) => {
     const onSubmit = (formValues) => {
         let token = window.localStorage.getItem('mavie_token');
         props.addNote(token, formValues);
+        navigate('/notes');
     }
 
     return(
@@ -58,10 +57,11 @@ const AddNote = (props) => {
             <div className='app-body'>
                 <Header />
                 <div style={{padding: '30px'}}>
+                    <h3 className='mt-3 text-center'>Add New Note</h3>
                     <form onSubmit={props.handleSubmit(onSubmit)}>
                         <Field name='title' type='input' component={renderInput} label="Title" />
                         <Field name='content' type='textarea' component={renderInput} label="Content" />
-                        <button className='mt-4'>Add Note</button>
+                        <button className='mt-4 my-input'>Add Note</button>
                     </form>
                 </div>
                 <div className='footer'>

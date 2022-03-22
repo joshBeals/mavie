@@ -13,3 +13,20 @@
 .long-btn:hover{
     transform: scale(1.05);
 }
+
+.notes-main{
+    padding: 30px 30px 80px 30px;
+}
+
+.note-list{
+    color: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 15px 0px;
+}
+
+.note-list p{
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+}

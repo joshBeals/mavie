@@ -15,7 +15,7 @@
 
 
 .dashboard-main{
-    padding: 30px;
+    padding: 30px 20px;
     /* border-bottom: 1px solid #5979c3; */
     display: flex;
     animation: show 300ms ease-in-out;
@@ -45,6 +45,10 @@
 .dashboard-main span{
     text-transform:capitalize;
     color: #5979c3;
+}
+
+.my-input{
+    border-radius: 5px !important;
 }
 
 .footer{

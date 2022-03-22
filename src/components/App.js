@@ -6,6 +6,7 @@ import Dashboard from './Dashboard';
 import Landing from './Landing';
 import Notes from './Notes';
 import AddNote from './Notes/New';
+import NoteDetails from './Notes/NoteDetails';
 
 class App extends Component {
     render(){
@@ -20,6 +21,7 @@ class App extends Component {
                                 <Route path="dashboard" element={<Dashboard />} />
                                 <Route path="notes" element={<Notes />} />
                                     <Route path="notes/new" element={<AddNote />} />
+                                    <Route path="note/:id" element={<NoteDetails />} />
                         </Routes>
                     </div>
                 </BrowserRouter>

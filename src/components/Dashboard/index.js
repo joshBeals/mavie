@@ -1,12 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getUser } from '../../actions';
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import '../../assets/css/style.css';
 import Footer from '../Footer';
 import './Dashboard.css';
-import Spinner from '../Spinner/Spinner';
 import notes from '../../assets/images/notes.png';
 import weight from '../../assets/images/weight.png';
 import memory from '../../assets/images/memory.png';
