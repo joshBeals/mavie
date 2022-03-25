@@ -18,7 +18,7 @@ const Footer = () => {
                     </Link>
                 </div>
                 <div className='col-3'>
-                    <Link to='/dashboard'>
+                    <Link to='/memories'>
                         <i className="bi bi-file-image"></i>
                     </Link>
                 </div>

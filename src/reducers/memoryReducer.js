@@ -3,15 +3,13 @@ import _ from "lodash";
 
 export default (state = { isLoading: true, data: {} }, action) => {
     switch(action.type){
-        case 'FETCH_NOTES':
+        case 'FETCH_MEMORIES':
             return { isLoading: false, data: {...state.data, ..._.mapKeys(action.payload, '_id')} };
-        case 'FETCH_NOTE':
+        case 'FETCH_MEMORY':
             return { isLoading: false, data: {...state.data, [action.payload._id]: action.payload} };
-        case 'CREATE_NOTE':
+        case 'CREATE_MEMORY':
             return { isLoading: false, data: {...state.data, [action.payload._id]: action.payload} };
-        case 'EDIT_NOTE':
-            return { isLoading: false, data: {...state.data, [action.payload._id]: action.payload} };
-        case 'DELETE_NOTE':
+        case 'DELETE_MEMORY':
             return { isLoading: false, data: {..._.omit(state.data, action.payload)} };
         default:
             return state;

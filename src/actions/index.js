@@ -1,4 +1,5 @@
 import mavie from "../apis/mavie";
+import history from "../helpers/history";
 
 // Auth Actions
 export const login = (formValues) => dispatch => {
@@ -71,7 +72,7 @@ export const addNote = (token, formValues) => async dispatch => {
         type: 'CREATE_NOTE',
         payload: response.data.data
     });
-    
+    history.push('/notes');
 }
 
 export const editNote = (id, token, formValues) => async dispatch => {
@@ -95,6 +96,59 @@ export const deleteNote = (id, token) => async dispatch => {
     });
     dispatch({ 
         type: 'DELETE_NOTE',
+        payload: id
+    });
+    
+}
+
+
+// Memory Actions
+export const fetchMemories = (token) => async dispatch => {
+    const response =  await mavie.get('/memory/user', {
+        headers: {
+            'auth-token': token
+        }
+    });
+    dispatch({ 
+        type: 'FETCH_MEMORIES',
+        payload: response.data.data
+    });
+}
+
+export const fetchMemory = (token, id) => async dispatch => {
+    const response =  await mavie.get(`/memory/${id}`, {
+        headers: {
+            'auth-token': token
+        }
+    });
+    dispatch({ 
+        type: 'FETCH_MEMORY',
+        payload: response.data.data[0]
+    });
+}
+
+export const addMemory = (token, formValues) => async dispatch => {
+    const response = await mavie.post('/memory/new', formValues, {
+        headers: {
+            'auth-token': token
+        }
+    });
+    dispatch({ 
+        type: 'CREATE_MEMORY',
+        payload: response.data.data
+    });
+    history.push('/memories');
+    
+}
+
+export const deleteMemory = (id, token) => async dispatch => {
+    const response = await mavie.delete(`/memory/delete/${id}`, {
+        headers: {
+            'auth-token': token
+        }
+    });
+    dispatch({ 
+        type: 'DELETE_MEMORY',
         payload: id
     });
     

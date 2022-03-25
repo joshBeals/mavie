@@ -44,12 +44,9 @@ const renderInput = ({ input, label, type, meta }) => {
 
 const AddNote = (props) => {
 
-    const navigate = useNavigate();
-
     const onSubmit = (formValues) => {
         let token = window.localStorage.getItem('mavie_token');
         props.addNote(token, formValues);
-        navigate('/notes');
     }
 
     return(

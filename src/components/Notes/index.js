@@ -26,11 +26,25 @@ const Notes = (props) => {
         }
     }, []);
 
-    const renderNotes = Object.values(props.notes).map(note => {
+    const renderNotes = Object.values(props.notes.data).map(note => {
         return(
             <NoteItem key={note._id} note={note} />
         );
     });
+
+    if(props.notes.isLoading){
+        return(
+            <div className='main-body'>
+                <div className='app-body'>
+                    <Header />
+                    <Spinner />
+                    <div className='footer'>
+                        <Footer />
+                    </div>
+                </div>
+            </div>
+        );
+    }
 
     return(
         <div className='main-body'>
@@ -42,7 +56,7 @@ const Notes = (props) => {
                     </div>
                 </Link>
                 <div className='notes-main'>
-                    {Object.keys(props.notes).length === 0 ? <Empty /> : renderNotes}
+                    {Object.keys(props.notes.data).length === 0 ? <Empty /> : renderNotes}
                 </div>
                 <div className='footer'>
                     <Footer />

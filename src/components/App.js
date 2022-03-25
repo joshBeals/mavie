@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { unstable_HistoryRouter as HistoryRouter, Route, Routes } from 'react-router-dom';
 import Login from './Auth/Login';
 import Register from './Auth/Register';
 import Dashboard from './Dashboard';
@@ -9,12 +9,13 @@ import AddMemory from './Memories/New';
 import Notes from './Notes';
 import AddNote from './Notes/New';
 import NoteDetails from './Notes/NoteDetails';
+import history from '../helpers/history';
 
 class App extends Component {
     render(){
         return(
             <div>
-                <BrowserRouter>
+                <HistoryRouter history={history}>
                     <div>
                         <Routes>
                             <Route path="/" element={<Landing />} />
@@ -29,7 +30,7 @@ class App extends Component {
                                 
                         </Routes>
                     </div>
-                </BrowserRouter>
+                </HistoryRouter>
             </div>
         );
     }

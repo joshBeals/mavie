@@ -4,8 +4,13 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Footer from '../Footer';
 import Header from '../Header';
+import { connect } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { addMemory } from '../../actions';
 
-const AddMemory = () => {
+const AddMemory = (props) => {
+
+    const navigate = useNavigate();
 
     const [text, setText] = useState('');
     const [image, setImage] = useState();
@@ -25,7 +30,7 @@ const AddMemory = () => {
 
     const validated = () => {
         if(!text || !image){
-            const toastVar = {
+            toast.error('No field should be left empty!', {
                 position: "top-center",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -33,9 +38,7 @@ const AddMemory = () => {
                 pauseOnHover: true,
                 draggable: true,
                 progress: undefined,
-            };
-            toast.error('No field should be left empty!', toastVar);
-            // return false;
+            });
         }else{
             return true;
         }
@@ -44,7 +47,18 @@ const AddMemory = () => {
     const submitForm = (e) => {
         e.preventDefault();
         if(validated()){
-            console.log(text);
+            let formData = { img_path: image, description: text };
+            let token = window.localStorage.getItem('mavie_token');
+            props.addMemory(token, formData);
+            toast.info('Loading', {
+                position: "top-center",
+                autoClose: false,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
         }
     }
     return(
@@ -88,4 +102,8 @@ const AddMemory = () => {
     );
 };
 
-export default AddMemory;
+const mapStateToProps = state => {
+    return { memories: state.memories };
+}
+
+export default connect(mapStateToProps, { addMemory })(AddMemory);

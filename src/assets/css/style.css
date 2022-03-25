@@ -1,7 +1,7 @@
 .main-body{
     font-family: 'Varela Round', sans-serif;
     background-color: wheat;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
 
