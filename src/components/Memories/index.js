@@ -8,6 +8,7 @@ import Header from '../Header';
 import { fetchMemories } from '../../actions';
 import Empty from '../Empty';
 import Spinner from '../Spinner/Spinner';
+import MemoryItem from './MemoryItem';
 
 const Memories = (props) => {
 
@@ -23,8 +24,10 @@ const Memories = (props) => {
         }
     }, []);
 
-    const renderNotes = Object.values(props.memories).map(memory => {
-        console.log(props.memories);
+    const renderNotes = Object.values(props.memories.data).map(memory => {
+        return(
+            <MemoryItem key={memory._id} memory={memory} />
+        );
     });
 
     if(props.memories.isLoading){

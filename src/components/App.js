@@ -10,6 +10,7 @@ import Notes from './Notes';
 import AddNote from './Notes/New';
 import NoteDetails from './Notes/NoteDetails';
 import history from '../helpers/history';
+import MemoryDetails from './Memories/MemoryDetails';
 
 class App extends Component {
     render(){
@@ -27,6 +28,7 @@ class App extends Component {
                                     <Route path="note/:id" element={<NoteDetails />} />
                                 <Route path="memories" element={<Memories />} />
                                     <Route path="memories/new" element={<AddMemory />} />
+                                    <Route path="memory/:id" element={<MemoryDetails />} />
                                 
                         </Routes>
                     </div>

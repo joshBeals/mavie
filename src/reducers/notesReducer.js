@@ -8,11 +8,11 @@ export default (state = { isLoading: true, data: {} }, action) => {
         case 'FETCH_NOTE':
             return { isLoading: false, data: {...state.data, [action.payload._id]: action.payload} };
         case 'CREATE_NOTE':
-            return { isLoading: false, data: {...state.data, [action.payload._id]: action.payload} };
+            return { isLoading: true, data: {...state.data, [action.payload._id]: action.payload} };
         case 'EDIT_NOTE':
-            return { isLoading: false, data: {...state.data, [action.payload._id]: action.payload} };
+            return { isLoading: true, data: {...state.data, [action.payload._id]: action.payload} };
         case 'DELETE_NOTE':
-            return { isLoading: false, data: {..._.omit(state.data, action.payload)} };
+            return { isLoading: true, data: {..._.omit(state.data, action.payload)} };
         default:
             return state;
     }

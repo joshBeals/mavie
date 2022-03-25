@@ -85,6 +85,7 @@ export const editNote = (id, token, formValues) => async dispatch => {
         type: 'EDIT_NOTE',
         payload: response.data.data
     });
+    history.push('/notes');
     
 }
 
@@ -98,6 +99,7 @@ export const deleteNote = (id, token) => async dispatch => {
         type: 'DELETE_NOTE',
         payload: id
     });
+    history.push('/notes');
     
 }
 
@@ -151,5 +153,6 @@ export const deleteMemory = (id, token) => async dispatch => {
         type: 'DELETE_MEMORY',
         payload: id
     });
+    history.push('/memories');
     
 }

@@ -50,7 +50,7 @@ const AddMemory = (props) => {
             let formData = { img_path: image, description: text };
             let token = window.localStorage.getItem('mavie_token');
             props.addMemory(token, formData);
-            toast.info('Loading', {
+            toast.info('Creating Memory...', {
                 position: "top-center",
                 autoClose: false,
                 hideProgressBar: false,

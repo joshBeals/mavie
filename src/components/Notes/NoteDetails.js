@@ -1,22 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../../assets/css/style.css';
 import './Notes.css';
-import { Field, reduxForm } from 'redux-form';
-import { useEffect } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Footer from '../Footer';
 import Header from '../Header';
 import { connect } from 'react-redux';
 import { editNote, fetchNote, deleteNote } from '../../actions';
 import { useNavigate, useParams } from 'react-router-dom';
 import _ from 'lodash';
+import Spinner from '../Spinner/Spinner';
 
 const NoteDetails = props => {
 
     const navigate = useNavigate();
     const params = useParams();
 
+    const token = window.localStorage.getItem('mavie_token');
+
+    const [title, setTitle] = useState('');
+    const [content, setContent] = useState('');
+
     useEffect(() => {
-        let token = window.localStorage.getItem('mavie_token');
         if(!token || token == null){
             window.localStorage.removeItem('mavie_token');
             navigate('/login');
@@ -25,63 +30,74 @@ const NoteDetails = props => {
         }
     }, []);
 
-    const getNote = Object.values(props.notes).filter(note => note._id == params.id);
+    const getNote = Object.values(props.notes.data).filter(note => note._id == params.id)[0];
 
-    const renderError = ({ touched, error }) => {
-        if(touched && error){
-            return(
-                <div className='text-danger'>
-                    {error}
-                </div>
-            );
+    useEffect(() => {
+        if(getNote){
+            setTitle(getNote.title);
+            setContent(getNote.content);
         }
-    }
-    
-    const renderInput = ({ input, label, type, content, meta }) => {
-        if(type == 'input'){
-            return(
-                <div className='form-container form-group mt-4'>
-                    <input type={type} className='form-control my-input' {...input} placeholder={content} />
-                    {renderError(meta)}
-                </div>
-            );
-        }else{
-            return(
-                <div className='form-container form-group mt-4'>
-                    <textarea type={type} rows="3" className='form-control my-input' {...input} placeholder={content} />
-                    {renderError(meta)}
-                </div>
-            );
-        }
-        
-    }
+    }, [getNote]);
 
-    const onSubmit = (formValues) => {
-        let token = window.localStorage.getItem('mavie_token');
+    const onSubmit = (e) => {
+        e.preventDefault();
+        const formValues = { title: title, content: content }
         props.editNote(params.id, token, formValues);
-        navigate('/notes');
+        toast.info('Updating Note...', {
+            position: "top-center",
+            autoClose: false,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
     }
 
     const removeNote = (e) => {
         e.preventDefault();
-        let token = window.localStorage.getItem('mavie_token');
         props.deleteNote(params.id, token);
-        navigate('/notes');
+        toast.info('Deleting Note...', {
+            position: "top-center",
+            autoClose: false,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
     }
 
     return(
         <div className='main-body'>
+            <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            ></ToastContainer>
             <div className='app-body'>
                 <Header />
                 <div style={{padding: '30px 20px'}}>
-                    <form onSubmit={props.handleSubmit(onSubmit)}>
-                        <Field name='title' type='input' content={_.isEmpty(getNote) ? '' : getNote[0].title} component={renderInput} label="Title" />
-                        <Field name='content' type='textarea' content={_.isEmpty(getNote) ? '' : getNote[0].content} component={renderInput} label="Content" />
+                    {getNote ? 
+                    <form onSubmit={onSubmit}>
+                        <div className='form-container form-group mt-4'>
+                            <input type='text' className='form-control my-input' placeholder='Enter Title' onChange={e => setTitle(e.target.value)} value={title} />
+                        </div>
+                        <div className='form-container form-group mt-4'>
+                            <textarea type='textarea' rows="3" className='form-control my-input' placeholder='Enter Content' onChange={e => setContent(e.target.value)} value={content} />
+                        </div>
                         <div style={{display: 'flex'}}>
                             <button type='submit' className='mt-4 my-input' style={{marginRight: '10px'}}>Save</button>
                             <button onClick={removeNote} className='bg-danger mt-4 my-input'>Delete</button>
                         </div>
-                    </form>
+                    </form>:
+                    <Spinner />}
                 </div>
                 <div className='footer'>
                     <Footer />
@@ -91,22 +107,8 @@ const NoteDetails = props => {
     );
 };
 
-const validate = formValues => {
-    const errors = {};
-    if(!formValues.title){
-        errors.title = 'Title field cannot be left empty!';
-    }
-    if(!formValues.content){
-        errors.content = 'Content field cannot be left empty!';
-    }
-
-    return errors;
-}
-
-const formWrapped =  reduxForm({ form: 'editNote', validate })(NoteDetails);
-
 const mapStateToProps = state => {
     return { notes: state.notes };
 }
 
-export default connect(mapStateToProps, { fetchNote, editNote, deleteNote })(formWrapped);
+export default connect(mapStateToProps, { fetchNote, editNote, deleteNote })(NoteDetails);
