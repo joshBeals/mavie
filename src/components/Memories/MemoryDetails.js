@@ -56,7 +56,7 @@ const MemoryDetails = (props) => {
             <div className='app-body'>
                 <Header />
                 {getNote ? 
-                <div style={{width: '100%', padding: '20px'}}>
+                <div style={{width: '100%', padding: '30px 20px 90px 20px'}}>
 
                     <div style={{padding: '30px 0px'}}>
                         <div className='card' style={{backgroundColor: 'ghostwhite', marginBottom: '20px', borderRadius: '8px', animation: 'show 200ms ease-in-out', cursor: 'pointer'}}>
