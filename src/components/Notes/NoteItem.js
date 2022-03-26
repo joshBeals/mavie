@@ -16,7 +16,7 @@ const NoteItem = ({ note }) => {
         <Link to={link} style={{textDecoration: 'none'}}>
             <div className='note-list' style={{backgroundColor: `${colors[getColor()]}`}}>
                 <h5><strong>{note.title}</strong></h5>
-                <p>{prettyDate(note.created_at)}</p>
+                <p>{note.created_at}</p>
             </div>
         </Link>
     );

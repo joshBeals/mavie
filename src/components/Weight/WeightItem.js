@@ -36,7 +36,7 @@ const WeightItem = (props) => {
             ></ToastContainer>
             <div className='flex-fill'>
                 <h5><strong>{props.weight.weight} KG</strong> ({(props.weight.weight * 2.2).toFixed(2)} lbs)</h5>
-                <p>{prettyDate(props.weight.created_at)}</p>
+                <p>{props.weight.created_at}</p>
             </div>
             <div className='flex-fill text-right d-flex justify-content-end align-items-center'>
                 <i onClick={removeWeight} className="bi bi-trash text-danger" style={{fontSize: '24px', cursor: 'pointer'}}></i>
