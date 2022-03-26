@@ -1,9 +1,8 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getUser } from '../actions';
+import { getUser, logout } from '../actions';
 import { useNavigate } from 'react-router-dom';
-import Spinner from './Spinner/Spinner';
 
 const Header = (props) => {
 
@@ -21,6 +20,7 @@ const Header = (props) => {
 
     const logout = () => {
         window.localStorage.removeItem('mavie_token');
+        props.logout();
         navigate('/login');
     }
 
@@ -54,4 +54,4 @@ const mapStateToProps = state => {
     return { user: state.user };
 }
 
-export default connect(mapStateToProps, { getUser })(Header)
+export default connect(mapStateToProps, { getUser, logout })(Header)

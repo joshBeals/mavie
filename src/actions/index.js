@@ -18,6 +18,13 @@ export const login = (formValues) => dispatch => {
     
 }
 
+export const logout = () => {
+    return { 
+        type: 'LOGOUT',
+        payload: []
+    };
+}
+
 export const register = (formValues) => dispatch => {
     const req = mavie.post('/user/register', formValues)
     .then(response => {
