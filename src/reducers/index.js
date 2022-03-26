@@ -4,6 +4,7 @@ import authReducer from "./authReducer";
 import memoryReducer from "./memoryReducer";
 import notesReducer from "./notesReducer";
 import userReducer from "./userReducer";
+import weightReducer from "./weightReducer";
 
 export default combineReducers({
     auth: authReducer,
@@ -11,4 +12,5 @@ export default combineReducers({
     form: formReducer,
     notes: notesReducer,
     memories: memoryReducer,
+    weights: weightReducer,
 });

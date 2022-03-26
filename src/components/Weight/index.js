@@ -2,35 +2,36 @@ import React from 'react';
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import '../../assets/css/style.css';
 import Footer from '../Footer';
 import Header from '../Header';
-import { fetchMemories } from '../../actions';
-import Empty from '../Empty';
+import { fetchWeights } from '../../actions';
 import Spinner from '../Spinner/Spinner';
-import MemoryItem from './MemoryItem';
+import Empty from '../Empty';
+import WeightItem from './WeightItem';
 
-const Memories = (props) => {
+const Weight = (props) => {
 
     const navigate = useNavigate();
 
+    const token = window.localStorage.getItem('mavie_token');
+
     useEffect(() => {
-        let token = window.localStorage.getItem('mavie_token');
         if(!token || token == null){
             window.localStorage.removeItem('mavie_token');
             navigate('/login');
         }else{
-            props.fetchMemories(token);
+            props.fetchWeights(token);
         }
     }, []);
 
-    const renderMemories = Object.values(props.memories.data).map(memory => {
+    const renderWeights = Object.values(props.weights.data).map(weight => {
         return(
-            <MemoryItem key={memory._id} memory={memory} />
+            <WeightItem key={weight._id} weight={weight} />
         );
     });
 
-    if(props.memories.isLoading){
+    if(props.weights.isLoading){
+        console.log('hello');
         return(
             <div className='main-body'>
                 <div className='app-body'>
@@ -44,17 +45,18 @@ const Memories = (props) => {
         );
     }
 
+
     return(
         <div className='main-body'>
             <div className='app-body'>
                 <Header />
-                <Link to='/memories/new'>
+                <Link to='/weight/new'>
                     <div style={{width: '100%', padding: '0px 20px'}}>
-                        <button className='long-btn'>Add New Memory</button>
+                        <button className='long-btn'>Record New Weight</button>
                     </div>
                 </Link>
                 <div className='notes-main'>
-                    {Object.keys(props.memories.data).length === 0 ? <Empty /> : renderMemories}
+                    {Object.keys(props.weights.data).length === 0 ? <Empty /> : renderWeights}
                 </div>
                 <div className='footer'>
                     <Footer />
@@ -65,7 +67,7 @@ const Memories = (props) => {
 };
 
 const mapStateToProps = state => {
-    return { memories: state.memories };
+    return { weights: state.weights }
 }
 
-export default connect(mapStateToProps, { fetchMemories })(Memories);
+export default connect(mapStateToProps, { fetchWeights })(Weight);

@@ -61,6 +61,7 @@ const AddMemory = (props) => {
             });
         }
     }
+    
     return(
         
         <div className='main-body'>

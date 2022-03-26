@@ -18,7 +18,7 @@ const Dashboard = (props) => {
                 <div className='box-main mt-5'>
                     <Cards header="Memories" text="Save and share daily memories" color="#f97c4f" img={memory} link="/memories" />
                     <Cards header="Notes" text="Keep daily notes" color="#5979c3" img={notes} link="/notes"  />
-                    <Cards header="Weight Tracker" text="Track your weight daily" color="#18606c" img={weight} link="/" />
+                    <Cards header="Weight Tracker" text="Track your weight daily" color="#18606c" img={weight} link="/weight" />
                 </div>
                 <div className='footer'>
                     <Footer />

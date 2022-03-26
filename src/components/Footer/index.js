@@ -23,7 +23,7 @@ const Footer = () => {
                     </Link>
                 </div>
                 <div className='col-3'>
-                    <Link to='/dashboard'>
+                    <Link to='/weight'>
                         <i className="bi bi-heart-pulse"></i>
                     </Link>
                 </div>

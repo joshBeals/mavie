@@ -156,3 +156,56 @@ export const deleteMemory = (id, token) => async dispatch => {
     history.push('/memories');
     
 }
+
+
+// WEIGHT Actions
+export const fetchWeights = (token) => async dispatch => {
+    const response =  await mavie.get('/weight/user', {
+        headers: {
+            'auth-token': token
+        }
+    });
+    dispatch({ 
+        type: 'FETCH_WEIGHTS',
+        payload: response.data.data
+    });
+}
+
+export const fetchWeight = (token, id) => async dispatch => {
+    const response =  await mavie.get(`/weight/${id}`, {
+        headers: {
+            'auth-token': token
+        }
+    });
+    dispatch({ 
+        type: 'FETCH_WEIGHT',
+        payload: response.data.data[0]
+    });
+}
+
+export const addWeight = (token, formValues) => async dispatch => {
+    const response = await mavie.post('/weight/new', formValues, {
+        headers: {
+            'auth-token': token
+        }
+    });
+    dispatch({ 
+        type: 'CREATE_WEIGHT',
+        payload: response.data.data
+    });
+    history.push('/weight');
+    
+}
+
+export const deleteWeight = (id, token) => async dispatch => {
+    const response = await mavie.delete(`/weight/delete/${id}`, {
+        headers: {
+            'auth-token': token
+        }
+    });
+    dispatch({ 
+        type: 'DELETE_WEIGHT',
+        payload: id
+    });
+    
+}

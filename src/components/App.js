@@ -11,6 +11,8 @@ import AddNote from './Notes/New';
 import NoteDetails from './Notes/NoteDetails';
 import history from '../helpers/history';
 import MemoryDetails from './Memories/MemoryDetails';
+import Weight from './Weight';
+import AddWeight from './Weight/New';
 
 class App extends Component {
     render(){
@@ -29,6 +31,8 @@ class App extends Component {
                                 <Route path="memories" element={<Memories />} />
                                     <Route path="memories/new" element={<AddMemory />} />
                                     <Route path="memory/:id" element={<MemoryDetails />} />
+                                <Route path="weight" element={<Weight />} />
+                                    <Route path="weight/new" element={<AddWeight />} />
                                 
                         </Routes>
                     </div>
