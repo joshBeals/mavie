@@ -60,7 +60,7 @@ const MemoryDetails = (props) => {
 
                     <div style={{padding: '30px 0px'}}>
                         <div className='card' style={{backgroundColor: 'ghostwhite', marginBottom: '20px', borderRadius: '8px', animation: 'show 200ms ease-in-out', cursor: 'pointer'}}>
-                            <img src={getNote.img_path} style={{borderRadius: '8px 8px 0px 0px'}} alt='memory img' />
+                            <img className='mem-img' src={getNote.img_path} alt='memory img' />
                             <div style={{padding: '10px'}}>
                                 <h5 className='mt-3'><strong>{getNote.description}</strong></h5>
                                 <p>{prettyDate(getNote.created_at)}</p>
