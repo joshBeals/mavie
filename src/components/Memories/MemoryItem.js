@@ -1,7 +1,7 @@
 import React from 'react';
 import './Memory.css';
 import { Link } from 'react-router-dom';
-import { prettyDate } from '../../helpers/prettyDate';
+import moment from 'moment';
 
 const MemoryItem = ({ memory }) => {
 
@@ -13,7 +13,7 @@ const MemoryItem = ({ memory }) => {
                 <img className='mem-img' src={memory.img_path} alt='memory img' />
                 <div style={{padding: '10px'}}>
                     <h5 className='mt-3'><strong>{memory.description}</strong></h5>
-                    <p>{memory.created_at}</p>
+                    <p>{moment(memory.created_at).fromNow()}</p>
                 </div>
             </div>
         </Link>

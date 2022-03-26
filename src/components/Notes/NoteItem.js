@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { prettyDate } from '../../helpers/prettyDate';
+import moment from 'moment';
 
 const NoteItem = ({ note }) => {
 
@@ -16,7 +16,7 @@ const NoteItem = ({ note }) => {
         <Link to={link} style={{textDecoration: 'none'}}>
             <div className='note-list' style={{backgroundColor: `${colors[getColor()]}`}}>
                 <h5><strong>{note.title}</strong></h5>
-                <p>{note.created_at}</p>
+                <p>{moment(note.created_at).fromNow()}</p>
             </div>
         </Link>
     );
