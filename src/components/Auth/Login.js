@@ -7,7 +7,7 @@ import '../../assets/css/style.css';
 import './Auth.css';
 import { login } from '../../actions';
 import { connect } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const renderError = ({ touched, error }) => {
     if(touched && error){
@@ -33,6 +33,15 @@ const Login = (props) => {
 
     const onSubmit = (formValues) => {
         props.login(formValues);
+        toast.info('Processing...', {
+            position: "top-center",
+            autoClose: false,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
     }
     
     let navigate = useNavigate();
@@ -90,6 +99,7 @@ const Login = (props) => {
                             <Field name='email' type='text' component={renderInput} label="Email Address" />
                             <Field name='password' type='password' component={renderInput} label="Password" />
                             <button className='mt-4'>Login</button>
+                            <p className='text-center mt-4'>Do not have an account? <Link to='/register'>Register</Link></p>
                         </form>
                     </div>
                 </div>

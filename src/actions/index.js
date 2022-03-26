@@ -18,6 +18,22 @@ export const login = (formValues) => dispatch => {
     
 }
 
+export const register = (formValues) => dispatch => {
+    const req = mavie.post('/user/register', formValues)
+    .then(response => {
+        dispatch({ 
+            type: 'REGISTER',
+            payload: response.data
+        });
+    }).catch(err => {
+        dispatch({ 
+            type: 'REGISTER',
+            payload: err.response.data
+        });
+    });
+    
+}
+
 export const getUser = (token) => async dispatch => {
     const req = mavie.get('/user', {
         headers: {
