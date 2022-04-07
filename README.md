@@ -1,4 +1,4 @@
-# QR Chef
+# Mavie
 
 This is a Progressive Web Application (PWA) that let's a person keep track of their thoughts, activities & record memories daily
 
