@@ -33,5 +33,3 @@ This is a Progressive Web Application (PWA) that let's a person keep track of th
   <li>Cloudinary</li>
 </ul>
 
-
-[The live site is available here](https://mavie-react.netlify.app/).
